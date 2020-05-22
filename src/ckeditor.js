@@ -30,6 +30,20 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
+
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
@@ -56,7 +70,20 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	Alignment,
+	Strikethrough,
+	Underline,
+	Subscript,
+	Superscript,
+	Code,
+	Highlight,
+	HorizontalLine,
+	RemoveFormat,
+	Base64UploadAdapter,
+	ImageResize,
+	Font,
+	IndentBlock
 ];
 
 // Editor configuration.
@@ -68,18 +95,60 @@ ClassicEditor.defaultConfig = {
 			'bold',
 			'italic',
 			'link',
-			'bulletedList',
-			'numberedList',
+			'underline',
+			'strikethrough',
 			'|',
+			'fontSize',
+			'fontColor',
+			'fontBackgroundColor',
+			'|',
+			'alignment',
 			'indent',
 			'outdent',
+			'bulletedList',
+			'numberedList',
+			'blockQuote',
 			'|',
-			'imageUpload',
+			'link',
 			'blockQuote',
 			'insertTable',
+			'imageUpload',
 			'mediaEmbed',
+			'|',
 			'undo',
 			'redo'
+		]
+	},
+	heading: {
+		options: [
+			{ model: 'paragraph', title: '본문', class: 'ck-heading_paragraph' },
+			{ model: 'heading1', view: 'h1', title: '헤더1', class: 'ck-heading_heading1' },
+			{ model: 'heading2', view: 'h2', title: '헤더2', class: 'ck-heading_heading2' },
+			{ model: 'heading3', view: 'h3', title: '헤더3', class: 'ck-heading_heading3' }
+		]
+	},
+	fontSize: {
+		options: [
+			9,
+			10,
+			11,
+			12,
+			13,
+			14,
+			15,
+			16,
+			17,
+			18,
+			19,
+			20,
+			21,
+			23,
+			25,
+			27,
+			29,
+			31,
+			33,
+			35
 		]
 	},
 	image: {
@@ -90,11 +159,60 @@ ClassicEditor.defaultConfig = {
 			'imageTextAlternative'
 		]
 	},
+	alignment: {
+		options: [ 'justify', 'left', 'center', 'right' ]
+	},
 	table: {
 		contentToolbar: [
 			'tableColumn',
 			'tableRow',
 			'mergeTableCells'
+		]
+	},
+	highlight: {
+		options: [
+			{
+				model: 'redPen',
+				class: 'pen-red',
+				title: 'Red pen',
+				color: 'var(--ck-highlight-pen-red)',
+				type: 'pen'
+			},
+			{
+				model: 'greenPen',
+				class: 'pen-green',
+				title: 'Green pen',
+				color: 'var(--ck-highlight-pen-green)',
+				type: 'pen'
+			},
+			{
+				model: 'yellowMarker',
+				class: 'marker-yellow',
+				title: 'Yellow marker',
+				color: 'var(--ck-highlight-marker-yellow)',
+				type: 'marker'
+			},
+			{
+				model: 'greenMarker',
+				class: 'marker-green',
+				title: 'Green marker',
+				color: 'var(--ck-highlight-marker-green)',
+				type: 'marker'
+			},
+			{
+				model: 'pinkMarker',
+				class: 'marker-pink',
+				title: 'Pink marker',
+				color: 'var(--ck-highlight-marker-pink)',
+				type: 'marker'
+			},
+			{
+				model: 'blueMarker',
+				class: 'marker-blue',
+				title: 'Blue marker',
+				color: 'var(--ck-highlight-marker-blue)',
+				type: 'marker'
+			}
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
